@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta content="width=device-width,user-scalable=no" name="viewport"> 
+        <title>手机号码测算</title>
+    </head>
+    
+    <body>
+    <div>手机号码：<input id="phone"/><button onclick="check()">提交</button></div>
+    <div id="result"></div>
+    </body>
+    <script type="text/javascript">
+    	function check(){
+    		var phone = document.getElementById("phone").value;
+    		var code = phone-parseInt(phone/384)*384
+    		document.getElementById('result').innerHTML = code
+    	}
+    </script>
+</html>
+
