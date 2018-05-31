@@ -7,11 +7,12 @@
         <title>手机号码测算</title>
         <style type="text/css">
         	body{
-        		font-size: 16px;
-        		font-family:"微软雅黑"
+        		font-size: 22px;
+        		font-family: "微软雅黑";
+        		/*text-align: center;*/
         	}
         	h1{
-        		font-size: 16px;
+        		font-size: 22px;
         	}
         	#result{
         		background-color: yellow;
@@ -21,9 +22,18 @@
         	#phone{
         		margin:5px 0 15px 0; 
         		background-color: #f9f2f2;
-        		width: 80%;
-        		height:20px;
-        		font-size: 20px;
+        		width: 300px;
+        		height: 50px;
+        		letter-spacing: 3px;
+        		font-size: 22px;
+        	}
+        	.close{
+        		font-size: 22px;
+        		margin-left: -40px;
+        		background-color: #f9f2f2;
+        		border: none;
+        		padding: 0;
+        		color: #887878;
         	}
         </style>
     </head>
@@ -31,7 +41,11 @@
     <h1>手机号码：</h1>
     <div id="content">
     	<input type="number" id="phone" onkeyup="javascript:check()" />
+    	<button type="button" class="close" onclick="reset()">
+    		<span id="button_title"></span>
+    	</button>
     </div>
+    
     <!-- <button onclick="check()">提交</button></div> -->
     <div>
     	<span id="result"></span>
@@ -40,10 +54,20 @@
     <script type="text/javascript">
     	function check(){
     		var phone = document.getElementById("phone").value;
+    		if(phone == ""){
+    			document.getElementById('button_title').innerHTML = ""
+    		}else{
+    			document.getElementById('button_title').innerHTML = "X"
+    		}
     		if(phone < 10000000000)
     			return;
     		var code = phone-parseInt(phone/384)*384
     		document.getElementById('result').innerHTML = code
+    	}
+    	function reset(){
+    		document.getElementById("phone").value = ""
+    		document.getElementById('result').innerHTML = ""
+    		document.getElementById('button_title').innerHTML = ""
     	}
     </script>
 </html>
