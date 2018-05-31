@@ -36,21 +36,22 @@
         		background-color: #f0efee;
         	}
         	/*haruki css*/
-			.input{position:relative;z-index:1;display:inline-block;margin:1em;width:calc(100% - 2em);max-width:25pc;vertical-align:top}.input__field{position:relative;float:right;display:block;padding:.8em;width:60%;border:none;border-radius:0;background:#f0f0f0;color:#aaa;font-weight:700;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;-webkit-appearance:none}.input__field:focus{outline:0}.input__label{float:right;display:inline-block;padding:0 1em;width:40%;color:#6a7989;font-weight:700;font-size:70.25%;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.input__label-content{position:relative;display:block;padding:1.6em 0;width:100%}.input--haruki{margin:4em 1em 1em}.input__field--haruki{padding:.4em .25em;width:90%;background:0 0;color:#afb5bb;font-size:1.55em}.input__label--haruki{position:absolute;width:100%;text-align:left;pointer-events:none}.input__label--haruki:after,.input__label--haruki:before,.input__label-content--haruki{-webkit-transition:-webkit-transform .3s;transition:transform .3s}.input__label--haruki:after,.input__label--haruki:before{position:absolute;left:0;z-index:-1;width:100%;height:4px;background:#6a7989;content:''}.input__label--haruki:before{top:0}.input__label--haruki:after{bottom:0}.input--filled .input__label-content--haruki,.input__field--haruki:focus+.input__label--haruki .input__label-content--haruki{-webkit-transform:translate3d(0,-90%,0);transform:translate3d(0,-90%,0)}.input--filled .input__label--haruki:before,.input__field--haruki:focus+.input__label--haruki:before{-webkit-transform:translate3d(0,-.5em,0);transform:translate3d(0,-.5em,0)}.input--filled .input__label--haruki:after,.input__field--haruki:focus+.input__label--haruki:after{-webkit-transform:translate3d(0,.5em,0);transform:translate3d(0,.5em,0)}
+			.input{position:relative;z-index:1;display:inline-block;margin:1em;width:calc(100% - 2em);max-width:25pc;vertical-align:top}.input__field{position:relative;float:right;display:block;padding:.8em;width:60%;border:none;border-radius:0;background:#f0f0f0;color:#aaa;font-weight:700;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;-webkit-appearance:none}.input__field:focus{outline:0}.input__label{float:right;display:inline-block;padding:0 1em;width:40%;color:#6a7989;font-weight:700;font-size:70.25%;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.input__label-content{position:relative;display:block;padding:1.6em 0;width:100%}.input--haruki{margin:4em 1em 1em}.input__field--haruki{padding:.4em .25em;width:85%;background:0 0;color:#afb5bb;font-size:1.55em}.input__label--haruki{position:absolute;width:92%;text-align:left;pointer-events:none}.input__label--haruki:after,.input__label--haruki:before,.input__label-content--haruki{-webkit-transition:-webkit-transform .3s;transition:transform .3s}.input__label--haruki:after,.input__label--haruki:before{position:absolute;left:0;z-index:-1;width:100%;height:4px;background:#6a7989;content:''}.input__label--haruki:before{top:0}.input__label--haruki:after{bottom:0}.input--filled .input__label-content--haruki,.input__field--haruki:focus+.input__label--haruki .input__label-content--haruki{-webkit-transform:translate3d(0,-90%,0);transform:translate3d(0,-90%,0)}.input--filled .input__label--haruki:before,.input__field--haruki:focus+.input__label--haruki:before{-webkit-transform:translate3d(0,-.5em,0);transform:translate3d(0,-.5em,0)}.input--filled .input__label--haruki:after,.input__field--haruki:focus+.input__label--haruki:after{-webkit-transform:translate3d(0,.5em,0);transform:translate3d(0,.5em,0)}
         </style>
     </head>
     <body>
     <!-- <button onclick="check()">提交</button></div> -->
-    <span id="parent" class="input input--haruki ">
+    <div id="parent" class="input input--haruki ">
 		<button type="button" class="close" onclick="reset()"><span id="button_title"></span></button>
-		<input class="input__field input__field--haruki" type="text" id="phone" onkeyup="javascript:check()"/>
+		<input class="input__field input__field--haruki" type="text" id="phone" onkeyup="javascript:check()" />
 		<label class="input__label input__label--haruki" for="phone">
 			<span class="input__label-content input__label-content--haruki">电话号码</span>
 		</label>
-	</span>
+	</div>
 	<div id="result">
     </div>
-
+    <img id="image">
+    </img>
 
     </body>
     <script type="text/javascript">
@@ -64,8 +65,15 @@
     				addClass(parent, "input--filled");
     			document.getElementById('button_title').innerHTML = "X"
     		}
-    		if(phone < 10000000000)
+    		if(phone < 10000000000){
+				document.getElementById('result').innerHTML = ""
     			return;
+    		}else if(phone > 100000000000){
+    			var str = phone+"";
+    			str = str.substring(0, 11)
+    			document.getElementById("phone").value = str
+    			phone = parseInt(str)
+    		}
     		var code = phone-parseInt(phone/384)*384
     		document.getElementById('result').innerHTML = code
     	}
