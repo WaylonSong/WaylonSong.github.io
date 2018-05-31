@@ -84,7 +84,8 @@
         }
         function renderImg(code){
             var src = "";
-            var ranges = [0, 52, 106, 160, 214, 268, 320, 372, 384]
+            var ranges = [0, 25, 52, 79, 106, 133, 160, 187, 214, 241, 
+            268, 295, 320, 346, 372, 384]
             for(var i =0 ; i < ranges.length; i++){
                 if(code <= ranges[i]){
                     src = "img/"+(ranges[i-1]+1)+"_"+ranges[i]+".jpeg"
